@@ -1,0 +1,42 @@
+APPLICATION « RLS PB » — Carte interactive des cliniques en recrutement
+Montérégie-Est — Pierre-Boucher, Pierre-De Saurel, Richelieu-Yamaska
+========================================================================
+
+Adresse en ligne : https://rls-pierre-boucher.github.io/Carte/
+Dépôt GitHub      : https://github.com/RLS-Pierre-Boucher/Carte
+
+CONTENU DU DOSSIER
+------------------
+- index.html ............... l'application (carte + liste + fiches)
+- data.json ................ les données des cliniques (À MODIFIER ICI)
+- manifest.json ............ infos d'installation (nom, icônes, couleurs)
+- sw.js .................... service worker (hors-ligne + installation)
+- icon-192.png ............. icône
+- icon-512.png ............. icône
+- icon-512-maskable.png .... icône adaptative (Android)
+- apple-touch-icon-180.png . icône iPhone
+
+Tous les fichiers doivent rester À LA RACINE du dépôt (à côté de index.html).
+
+METTRE À JOUR UNE CLINIQUE (sans toucher au code)
+-------------------------------------------------
+1. Sur GitHub : dépôt Carte -> data.json -> crayon (modifier).
+2. Changer la valeur voulue (téléphone, horaire, site, etc.).
+   - Texte entre guillemets droits "..."
+   - Virgule entre les éléments, PAS de virgule après le dernier d'une liste.
+3. Mettre à jour la date :  "miseAJour": "AAAA-MM-JJ"
+4. Commit. La nouvelle version s'affiche à la prochaine ouverture.
+   (Si data.json est invalide, l'app affiche « Données indisponibles » :
+    il suffit de corriger la virgule fautive.)
+
+FORCER UNE MISE À JOUR IMMÉDIATE APRÈS UN CHANGEMENT DE CODE
+-----------------------------------------------------------
+Dans sw.js, augmenter le numéro de version du cache :
+   const CACHE = 'gmf-pb-v6';   ->   'gmf-pb-v7'
+puis re-téléverser sw.js.
+
+INSTALLER L'APPLICATION
+-----------------------
+- Android / ordinateur : bouton « Installer l'application » dans l'app,
+  ou menu du navigateur -> « Installer ».
+- iPhone (Safari) : bouton Partager -> « Sur l'écran d'accueil ».
