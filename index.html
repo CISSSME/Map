@@ -102,6 +102,15 @@ header {
   text-transform: uppercase; letter-spacing: .04em; color: var(--navy2); white-space: nowrap; }
 .sb-head p { font-size: 13px; color: var(--muted); margin-top: 3px; font-weight: 300; }
 .sb-head .maj { font-size: 11px; font-style: italic; margin-top: 6px; opacity: .85; }
+.sb-search { position: relative; margin-top: 12px; }
+.sb-search-ic { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; opacity: .55; pointer-events: none; }
+.sb-search input { width: 100%; box-sizing: border-box; padding: 9px 32px 9px 30px; border: 1px solid var(--border); border-radius: 9px; font-family: 'Lato', sans-serif; font-size: 13.5px; background: #fff; color: var(--navy); }
+.sb-search input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,196,.16); }
+.sb-search input::placeholder { color: var(--muted); }
+.sb-search input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.sb-search-clear { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: none; background: transparent; cursor: pointer; color: var(--muted); font-size: 12px; line-height: 1; padding: 5px 7px; border-radius: 6px; display: none; }
+.sb-search-clear:hover { background: var(--cream); color: var(--navy); }
+.sb-search.has-text .sb-search-clear { display: block; }
 .fav-toggle { margin-top: 10px; display: inline-flex; align-items: center; gap: 5px;
   background: #fff; border: 1.5px solid var(--border); color: var(--navy2); cursor: pointer;
   font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: .02em;
@@ -484,6 +493,11 @@ body.cmp-open { overflow:hidden; }
       <h2>Cliniques en recrutement</h2>
       <p>Cliquez sur une clinique pour consulter sa fiche</p>
       <p class="maj" id="maj-date"></p>
+      <div class="sb-search" id="sb-search">
+        <span class="sb-search-ic" aria-hidden="true">🔍</span>
+        <input type="search" id="sb-search-input" placeholder="Rechercher une clinique ou une ville…" autocomplete="off" aria-label="Rechercher une clinique ou une ville">
+        <button type="button" class="sb-search-clear" id="sb-search-clear" aria-label="Effacer la recherche" title="Effacer">✕</button>
+      </div>
       <button class="fav-toggle" id="fav-toggle">★ Voir mes favoris</button>
       <button class="cmp-export-btn" id="cmp-export-btn">⤓ Exporter le comparatif (PDF)</button>
       <div class="prat-filter" id="prat-filter"></div>
@@ -521,6 +535,7 @@ let dataMeta = {};
 let favoris = new Set();
 let favOnly = false;
 let pratFilter = new Set();
+let searchQuery = '';
 let annonceFermee = false; // fermeture de la bannière pour la session courante seulement
 let notesDirty = false; // vrai si le champ notes a été modifié sans sauvegarde
 
@@ -538,8 +553,14 @@ const ANNONCE_KEY = 'gmf-pb-annonce-fermee';
 // (notes, ordre et marqueurs sont initialisés dans initData(), après le chargement de data.json)
 
 const byId = id => gmfs.find(g => g.id === id);
+const normTxt = s => (s == null ? '' : String(s)).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 function matchesFilters(id) {
   if (favOnly && !favoris.has(id)) return false;
+  if (searchQuery) {
+    const g = byId(id);
+    const hay = normTxt([g && g.nom, g && g.alias, g && g.ville, g && g.type].filter(Boolean).join(' '));
+    if (!hay.includes(searchQuery)) return false;
+  }
   if (pratFilter.size) {
     const g = byId(id);
     const ps = Array.isArray(g && g.pratiques) ? g.pratiques : [];
@@ -736,8 +757,10 @@ function renderSidebar() {
 
     sbList.appendChild(el);
   });
-  if (shown === 0 && (favOnly || pratFilter.size)) {
-    sbList.innerHTML = '<div class="sb-empty">' + (favOnly
+  if (shown === 0 && (favOnly || pratFilter.size || searchQuery)) {
+    sbList.innerHTML = '<div class="sb-empty">' + (searchQuery
+      ? 'Aucune clinique ne correspond à votre recherche.'
+      : favOnly
       ? 'Aucune clinique en favori.<br>Touchez l\'étoile ☆ d\'une clinique pour l\'ajouter ici.'
       : 'Aucune clinique ne correspond aux pratiques sélectionnées.') + '</div>';
   }
@@ -956,6 +979,21 @@ window.addEventListener('afterprint', () => {
   document.body.classList.remove('print-fiche');
 });
 
+const _searchInput = document.getElementById('sb-search-input');
+const _searchClear = document.getElementById('sb-search-clear');
+const _searchWrap  = document.getElementById('sb-search');
+function applySearch() {
+  searchQuery = normTxt(_searchInput ? _searchInput.value.trim() : '');
+  if (_searchWrap) _searchWrap.classList.toggle('has-text', !!(_searchInput && _searchInput.value.length));
+  renderSidebar();
+  updateMarkerVisibility();
+}
+if (_searchInput) _searchInput.addEventListener('input', applySearch);
+if (_searchClear) _searchClear.addEventListener('click', () => {
+  if (_searchInput) _searchInput.value = '';
+  applySearch();
+  if (_searchInput) _searchInput.focus();
+});
 const _cmpBtn = document.getElementById('cmp-export-btn');
 if (_cmpBtn) _cmpBtn.addEventListener('click', exportComparatif);
 
