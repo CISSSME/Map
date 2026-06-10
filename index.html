@@ -41,7 +41,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Lato', sans-serif; }
 header {
   position: fixed; top: 0; left: 0; right: 0; height: 62px;
   background: var(--navy); border-bottom: 3px solid var(--orange);
-  display: flex; align-items: center; padding: 0 22px; gap: 14px; z-index: 1000;
+  display: flex; align-items: center; padding: 0 0 0 22px; gap: 14px; z-index: 1000;
 }
 .brand { display:flex; align-items:center; gap:14px; cursor:pointer; }
 .brand:hover { opacity:.85; }
@@ -53,7 +53,7 @@ header {
 .logo-text { color: #fff; }
 .logo-text strong { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700; display: block; }
 .logo-text span { font-size: 11px; font-weight: 300; opacity: .6; letter-spacing: .04em; text-transform: uppercase; }
-.header-right { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.header-right { margin-left: auto; display: flex; gap: 8px; align-items: center; padding-right: 10px; }
 .btn-info { display: inline-flex; align-items: center; justify-content: center;
   width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
   border: 1.5px solid rgba(255,255,255,.45); color: #fff; text-decoration: none;
@@ -152,7 +152,7 @@ header {
 
 .rls-dot { display:inline-block; width:9px; height:9px; border-radius:50%;
   margin-right:6px; vertical-align:middle; flex-shrink:0; }
-.rls-legend { background: rgba(255,255,255,.92); border:1px solid var(--border);
+.rls-legend { background: rgba(255,255,255,.92); border:1px solid var(--border); margin-bottom:32px;
   border-radius:8px; padding:7px 10px; font-family:'Lato',sans-serif; font-size:12px;
   color: var(--navy2); box-shadow:0 2px 8px rgba(0,0,0,.12); line-height:1.5; }
 .rls-legend-title { font-family:'Raleway',sans-serif; font-weight:700; font-size:11px;
@@ -266,10 +266,10 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
 .sb-dots { display: flex; gap: 2px; line-height: 0; }
 .sb-label { writing-mode: vertical-rl; }
 .sb-dots i { width: 4px; height: 4px; border-radius: 50%; background: currentColor; display: block;
-  animation: sbDotHop 5s ease-in-out infinite; }
+  animation: sbDotHop 5s ease-in-out infinite; will-change: transform; }
+.sidebar-toggle:not(.hidden) .sb-dots i { animation-play-state: running; }
 .sb-dots i:nth-child(2) { animation-delay: .14s; }
 .sb-dots i:nth-child(3) { animation-delay: .28s; }
-.sidebar-toggle.seen .sb-dots i { animation: none; }
 @keyframes sbDotHop {
   0% { transform: translateY(0); }
   3% { transform: translateY(-6px); }
@@ -470,8 +470,8 @@ body.cmp-open { overflow:hidden; }
   </div>
   </div>
   <div class="header-right">
-    <a class="btn-info" href="https://www.santemonteregie.qc.ca/recrutement-dtmf-monteregie" target="_blank" rel="noopener" title="Plus d'information sur le recrutement (DTMF Montérégie)" aria-label="Plus d'information">i</a>
     <button class="btn-install" id="btn-install">⤓ Installer l'application</button>
+    <a class="btn-info" href="https://www.santemonteregie.qc.ca/recrutement-dtmf-monteregie" target="_blank" rel="noopener" title="Plus d'information sur le recrutement (DTMF Montérégie)" aria-label="Plus d'information">i</a>
   </div>
 </header>
 
@@ -618,7 +618,7 @@ map.on('locationerror', function () {
   showToast("Localisation impossible. Vérifiez que l'accès à votre position est autorisé dans votre navigateur.");
 });
 L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution:'© OpenStreetMap © CartoDB | Olivier Laplante', maxZoom:19
+  attribution:'© OpenStreetMap © CartoDB | © Olivier Laplante', maxZoom:19
 }).addTo(map);
 
 // Légende des couleurs par RLS
@@ -1197,7 +1197,6 @@ function updateLegendVisibility() {
 
 function openDrawer() {
   sidebarEl.classList.add('open'); sbOverlay.classList.add('show'); sbToggle.classList.add('hidden');
-  sbToggle.classList.add('seen');
   updateLegendVisibility();
 }
 function closeDrawer() { sidebarEl.classList.remove('open'); sbOverlay.classList.remove('show'); sbToggle.classList.remove('hidden'); updateLegendVisibility(); }
