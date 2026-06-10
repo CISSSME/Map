@@ -160,6 +160,7 @@ header {
 .rls-legend-row { display:flex; align-items:center; white-space:nowrap; }
 .locate-ctrl a { display: flex; align-items: center; justify-content: center; color: var(--navy); }
 .locate-ctrl a:hover { color: var(--blue); }
+body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: none !important; }
 .user-loc-icon { background: transparent; border: none; }
 .user-loc-dot { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px;
   margin: -7px 0 0 -7px; background: #2563eb; border: 3px solid #fff; border-radius: 50%;
@@ -492,7 +493,6 @@ body.cmp-open { overflow:hidden; }
     <div class="sb-head">
       <h2>Cliniques en recrutement</h2>
       <p>Cliquez sur une clinique pour consulter sa fiche</p>
-      <p class="maj" id="maj-date"></p>
       <div class="sb-search" id="sb-search">
         <span class="sb-search-ic" aria-hidden="true">🔍</span>
         <input type="search" id="sb-search-input" placeholder="Rechercher une clinique ou une ville…" autocomplete="off" aria-label="Rechercher une clinique ou une ville">
@@ -1129,6 +1129,7 @@ function openDetail(id) {
   `;
 
   document.getElementById('detail').classList.add('open');
+  document.body.classList.add('fiche-open');
 
   // Détecte une modification non sauvegardée du champ notes
   const notesTa = document.getElementById('notes-input');
@@ -1155,6 +1156,7 @@ function closeDetailUI() {
   activeId = null;
   document.querySelectorAll('.sb-item').forEach(e => e.classList.remove('active'));
   document.getElementById('detail').classList.remove('open');
+  document.body.classList.remove('fiche-open');
   if (sbToggle) sbToggle.classList.remove('hidden'); // réaffiche l'onglet Liste (mobile)
   updateLegendVisibility();
   map.flyTo(HOME.center, HOME.zoom, { duration:1 });
