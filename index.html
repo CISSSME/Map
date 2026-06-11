@@ -97,7 +97,9 @@ header {
 /* SIDEBAR */
 .sidebar { width: 400px; flex-shrink: 0; background: var(--white);
   border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
-.sb-head { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); background: var(--cream); flex-shrink: 0; }
+.sb-head { position: relative; padding: 14px 16px 10px; border-bottom: 1px solid var(--border); background: var(--cream); flex-shrink: 0; }
+.sb-close { display: none; position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border: none; background: transparent; color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; border-radius: 8px; z-index: 1; }
+.sb-close:hover { background: var(--cream); color: var(--navy); }
 .sb-head h2 { font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 15px;
   text-transform: uppercase; letter-spacing: .04em; color: var(--navy2); white-space: nowrap; }
 .sb-head p { font-size: 13px; color: var(--muted); margin-top: 3px; font-weight: 300; }
@@ -292,6 +294,7 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
     box-shadow: 4px 0 24px rgba(0,0,0,.28);
   }
   .sidebar.open { transform: translateX(0); }
+  .sb-close { display: block; }
   .sidebar-toggle { display: flex; flex-direction: column; align-items: center; gap: 9px; }
   .sidebar-overlay { display: block; }
 }
@@ -491,6 +494,7 @@ body.cmp-open { overflow:hidden; }
 <div class="layout">
   <div class="sidebar">
     <div class="sb-head">
+      <button class="sb-close" id="sb-close" aria-label="Fermer la liste">&times;</button>
       <h2>Cliniques en recrutement</h2>
       <p>Cliquez sur une clinique pour consulter sa fiche</p>
       <div class="sb-search" id="sb-search">
@@ -1201,6 +1205,8 @@ function openDrawer() {
 }
 function closeDrawer() { sidebarEl.classList.remove('open'); sbOverlay.classList.remove('show'); sbToggle.classList.remove('hidden'); updateLegendVisibility(); }
 if (sbToggle) sbToggle.addEventListener('click', openDrawer);
+const _sbClose = document.getElementById('sb-close');
+if (_sbClose) _sbClose.addEventListener('click', closeDrawer);
 const dpBodyEl = document.getElementById('dp-body');
 if (dpBodyEl) dpBodyEl.addEventListener('click', function (e) {
   if (e.target.closest('.info-dot')) {
