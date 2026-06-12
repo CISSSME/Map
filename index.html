@@ -557,7 +557,7 @@ const ANNONCE_KEY = 'gmf-pb-annonce-fermee';
 // (notes, ordre et marqueurs sont initialisés dans initData(), après le chargement de data.json)
 
 const byId = id => gmfs.find(g => g.id === id);
-const normTxt = s => (s == null ? '' : String(s)).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+const normTxt = s => (s == null ? '' : String(s)).toLowerCase().replace(/\u0153/g, 'oe').replace(/\u00e6/g, 'ae').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 function matchesFilters(id) {
   if (favOnly && !favoris.has(id)) return false;
   if (searchQuery) {
@@ -679,7 +679,7 @@ function refreshMarkerIcons() {
 function buildMarkers() {
   gmfs.forEach(g => {
     const m = L.marker([g.lat, g.lng], { icon:makeIcon(false, rankOf(g.id), g.rls), draggable:false }).addTo(map);
-    m.bindTooltip(`<b>${g.nom.trim()}</b><br><small>${g.ville}</small>`, { direction:'top', offset:[0,-20] });
+    m.bindTooltip(`<b>${esc(g.nom.trim())}</b><br><small>${esc(g.ville)}</small>`, { direction:'top', offset:[0,-20] });
     m.on('click', (e) => { L.DomEvent.stopPropagation(e); toggleDetail(g.id); });
     markers[g.id] = m;
   });
@@ -720,8 +720,8 @@ function renderSidebar() {
     el.innerHTML = `${dragEnabled ? '<span class="sb-grip" title="Glisser pour reclasser">⠿</span>' : ''}
       <div class="sb-num" style="--rls:${rlsColor(g.rls)}">${i+1}</div>
       <div class="sb-info">
-        <div class="sb-name">${nomMain}</div>
-        <div class="sb-city">📍 ${g.ville}</div>
+        <div class="sb-name">${esc(nomMain)}</div>
+        <div class="sb-city">📍 ${esc(g.ville)}</div>
       </div>
       <button class="sb-star${favoris.has(id) ? ' fav' : ''}" title="Marquer comme favori" aria-label="Favori" draggable="false">${favoris.has(id) ? '★' : '☆'}</button>`;
 
