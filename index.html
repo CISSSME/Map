@@ -804,8 +804,11 @@ function siteLink(url) {
 function contactLink(c) {
   if (!c) return 'À venir';
   c = c.trim();
-  if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(c))
-    return `<a href="mailto:${esc(c)}">${esc(c)}</a>`;
+  const reMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  // Sépare sur la virgule, le point-virgule ou l'espace : rend chaque courriel cliquable
+  const parts = c.split(/[,;]+|\s+/).map(p => p.trim()).filter(Boolean);
+  if (parts.length && parts.every(p => reMail.test(p)))
+    return parts.map(p => `<a href="mailto:${esc(p)}">${esc(p)}</a>`).join(', ');
   return esc(c);
 }
 function telLink(phone) {
