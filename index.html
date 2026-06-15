@@ -364,6 +364,13 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
 .dp-fav-btn.fav { background:#fff7e6; border-color:#f5b301; color:#9a6b00; }
 .dp-pdf-btn { padding:9px 14px; border-radius:8px; border:1.5px solid var(--border); background:#fff; color:var(--navy2); font-family:'Raleway',sans-serif; font-weight:700; font-size:13.5px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px; white-space:nowrap; }
 .dp-pdf-btn:hover { border-color:var(--navy); }
+/* ===== Fiche imprimable (PDF) ===== */
+#cmp-print .fp-doc { color:#1a3558; font-family:'Lato',Helvetica,Arial,sans-serif; }
+#cmp-print .fp-head { border-bottom:3px solid var(--orange); padding-bottom:10px; margin-bottom:14px; }
+#cmp-print .fp-eyebrow { color:var(--orange); font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; font-family:'Raleway',sans-serif; }
+#cmp-print .fp-title { color:var(--navy); font-size:28px; font-weight:800; line-height:1.05; margin:3px 0 2px; font-family:'Raleway',sans-serif; }
+#cmp-print .fp-sub { color:var(--muted); font-size:13px; }
+#cmp-print .fp-body .dp-actions, #cmp-print .fp-body .dp-report-wrap, #cmp-print .fp-body .notes-sec, #cmp-print .fp-body .info-dot { display:none !important; }
 /* ===== Comparatif des favoris (PDF) ===== */
 #cmp-print { position:fixed; left:-10000px; top:0; width:1000px; background:#fff; color:#1a3558; font-family:'Lato',Helvetica,Arial,sans-serif; }
 #cmp-print.cmp-show { position:fixed; left:0; top:0; width:100%; height:100%; z-index:5000; overflow:auto; }
@@ -443,12 +450,12 @@ body.cmp-open { overflow:hidden; }
   body.print-fiche .notes-sec, body.print-fiche .niveau-explain, body.print-fiche .info-dot { display:none !important; }
   body.print-fiche .prat-chip, body.print-fiche .rls-dot { -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact; }
 
-  /* ---- Impression du COMPARATIF ---- */
-  body.print-cmp header, body.print-cmp .sidebar, body.print-cmp #map,
-  body.print-cmp .leaflet-control-container, body.print-cmp .sidebar-toggle,
-  body.print-cmp #detail, body.print-cmp .layout > *:not(#cmp-print) { display:none !important; }
+  /* ---- Impression COMPARATIF / FICHE (conteneur #cmp-print) ---- */
+  /* Masque absolument tout sauf le conteneur d'impression */
+  body.print-cmp > * { display:none !important; }
   body.print-cmp #cmp-print { display:block !important; position:static !important; left:auto !important; top:auto !important;
-    width:100% !important; height:auto !important; overflow:visible !important; }
+    right:auto !important; bottom:auto !important; width:100% !important; height:auto !important; max-height:none !important;
+    overflow:visible !important; z-index:auto !important; background:#fff !important; }
   body.print-cmp #cmp-print .cmp-bar { display:none !important; }
   body.print-cmp #cmp-print .cmp-inner { max-width:none !important; margin:0 !important; padding:0 !important; }
   body.print-cmp #cmp-print, body.print-cmp #cmp-print * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
@@ -980,6 +987,40 @@ function exportComparatif() {
   if (cp) { cp.classList.add('cmp-show'); cp.scrollTop = 0; }
   document.body.classList.add('cmp-open');
 }
+function exportFiche() {
+  const g = byId(activeId);
+  if (!g) return;
+  const cp = document.getElementById('cmp-print');
+  if (!cp) return;
+  // Réutilise le conteneur d'impression fiable (#cmp-print), comme le comparatif.
+  const body = document.getElementById('dp-body');
+  const inner = body ? body.innerHTML : '';
+  const sousTitre = [g.type, g.ville, 'RLS ' + g.rls].filter(Boolean).join('  \u2022  ');
+  cp.classList.remove('cmp-dense');
+  const os = document.getElementById('cmp-orient');
+  if (os) os.textContent = '@page { size: Letter portrait; margin: 1.3cm; }';
+  cp.innerHTML =
+    '<div class="cmp-bar">' +
+      '<span class="cmp-bar-t">Fiche \u2014 ' + esc(g.nom.trim()) + '</span>' +
+      '<button type="button" class="b-print" onclick="fichePrint()">\u2913 Imprimer / Enregistrer en PDF</button>' +
+      '<button type="button" class="b-close" onclick="cmpClose()">\u2715 Fermer</button>' +
+    '</div>' +
+    '<div class="cmp-inner">' +
+      '<div class="fp-doc">' +
+        '<div class="fp-head"><div class="fp-eyebrow">' + esc(g.type || 'Clinique') + '</div>' +
+        '<div class="fp-title">' + esc(g.nom.trim()) + '</div>' +
+        '<div class="fp-sub">' + esc(sousTitre) + '</div></div>' +
+        '<div class="fp-body">' + inner + '</div>' +
+      '</div>' +
+    '</div>';
+  cp.classList.add('cmp-show'); cp.scrollTop = 0;
+  document.body.classList.add('cmp-open');
+}
+function fichePrint() {
+  document.body.classList.remove('print-cmp');
+  document.body.classList.add('print-cmp');  // réutilise le mode d'impression isolé du comparatif
+  setTimeout(() => window.print(), 80);
+}
 function cmpPrint() {
   document.body.classList.remove('print-fiche');
   document.body.classList.add('print-cmp');
@@ -1228,7 +1269,7 @@ if (dpBodyEl) dpBodyEl.addEventListener('click', function (e) {
     if (ex) ex.classList.toggle('show');
   }
   if (e.target.closest('#dp-fav-btn') && activeId !== null) { toggleFav(activeId); }
-  if (e.target.closest('#export-pdf-btn')) { document.body.classList.remove('print-cmp'); document.body.classList.add('print-fiche'); setTimeout(() => window.print(), 60); }
+  if (e.target.closest('#export-pdf-btn')) { exportFiche(); }
 });
 function goHome() {
   const b = document.getElementById('brand-home');
