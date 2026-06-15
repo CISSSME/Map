@@ -423,24 +423,35 @@ body.cmp-open { overflow:hidden; }
 #cmp-print.cmp-dense td.cmp-sect { padding:3px 8px; font-size:9px; }
 #cmp-print.cmp-dense .cmp-note { font-size:8px; margin-top:7px; }
 @media print {
-  html, body { height:auto !important; overflow:visible !important; background:#fff !important; }
-  body * { visibility:hidden !important; }
-  body.print-fiche #detail, body.print-fiche #detail * { visibility:visible !important; }
-  body.print-fiche #detail { position:absolute !important; left:0 !important; top:0 !important; width:100% !important;
-    height:auto !important; max-height:none !important; transform:none !important; box-shadow:none !important; overflow:visible !important; }
-  .dp-body { overflow:visible !important; height:auto !important; }
-  .dp-head { background:#fff !important; color:#0f2240 !important; border-bottom:2px solid #0f2240 !important; }
-  .dp-name-display { color:#0f2240 !important; }
-  .dp-tag { color:#ee2d62 !important; }
-  #dp-close, .dp-actions, .dp-report-wrap, .notes-sec, .niveau-explain, .info-dot { display:none !important; }
-  .prat-chip, .rls-dot { -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact; }
-  body.print-cmp > *:not(#cmp-print) { display:none !important; }
-  body.print-cmp #cmp-print, body.print-cmp #cmp-print * { visibility:visible !important; }
-  body.print-cmp #cmp-print { position:static !important; left:auto !important; top:auto !important; width:100% !important; height:auto !important; overflow:visible !important; }
-  #cmp-print .cmp-bar { display:none !important; }
-  #cmp-print .cmp-inner { max-width:none !important; margin:0 !important; padding:0 !important; }
-  body.print-cmp #cmp-print, body.print-cmp #cmp-print * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
   @page { margin:1.4cm; }
+  html, body { height:auto !important; min-height:0 !important; overflow:visible !important; background:#fff !important; }
+
+  /* ---- Impression d'une FICHE ---- */
+  body.print-fiche header, body.print-fiche .sidebar, body.print-fiche #map,
+  body.print-fiche .leaflet-control-container, body.print-fiche .sidebar-toggle,
+  body.print-fiche #cmp-print { display:none !important; }
+  body.print-fiche .layout { display:block !important; height:auto !important; padding:0 !important; }
+  body.print-fiche #detail { display:flex !important; position:static !important; transform:none !important;
+    left:auto !important; top:auto !important; right:auto !important; bottom:auto !important;
+    width:100% !important; height:auto !important; max-height:none !important;
+    box-shadow:none !important; border:none !important; overflow:visible !important; }
+  body.print-fiche .dp-body { overflow:visible !important; height:auto !important; }
+  body.print-fiche .dp-head { background:#fff !important; color:#0f2240 !important; border-bottom:2px solid #0f2240 !important; }
+  body.print-fiche .dp-name-display { color:#0f2240 !important; }
+  body.print-fiche .dp-tag { color:#ee2d62 !important; }
+  body.print-fiche #dp-close, body.print-fiche .dp-actions, body.print-fiche .dp-report-wrap,
+  body.print-fiche .notes-sec, body.print-fiche .niveau-explain, body.print-fiche .info-dot { display:none !important; }
+  body.print-fiche .prat-chip, body.print-fiche .rls-dot { -webkit-print-color-adjust:exact; print-color-adjust:exact; color-adjust:exact; }
+
+  /* ---- Impression du COMPARATIF ---- */
+  body.print-cmp header, body.print-cmp .sidebar, body.print-cmp #map,
+  body.print-cmp .leaflet-control-container, body.print-cmp .sidebar-toggle,
+  body.print-cmp #detail, body.print-cmp .layout > *:not(#cmp-print) { display:none !important; }
+  body.print-cmp #cmp-print { display:block !important; position:static !important; left:auto !important; top:auto !important;
+    width:100% !important; height:auto !important; overflow:visible !important; }
+  body.print-cmp #cmp-print .cmp-bar { display:none !important; }
+  body.print-cmp #cmp-print .cmp-inner { max-width:none !important; margin:0 !important; padding:0 !important; }
+  body.print-cmp #cmp-print, body.print-cmp #cmp-print * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
 }
 </style>
 </head>
