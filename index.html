@@ -1175,7 +1175,7 @@ function openDetail(id) {
     <div class="vw-sec">
       <div class="vw-sec-title">Recrutement</div>
       ${recruitRows}
-      <div class="vw-row"><span class="vw-label">Portes ouvertes</span><span class="vw-value">${poDisp}</span></div>
+      ${poRaw ? `<div class="vw-row"><span class="vw-label">Portes ouvertes</span><span class="vw-value">${poDisp}</span></div>` : ''}
       <div class="vw-row"><span class="vw-label">Contact</span><span class="vw-value">${contactLink(g.personneRessource)}</span></div>
     </div>
     <div class="vw-divider"></div>
