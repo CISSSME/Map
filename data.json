@@ -8,8 +8,8 @@
  "cliniques": [
   {
    "id": 1,
-   "nom": "GMF du Petit-Bois ",
-   "alias": "CAMU Longueuil Clinique La Relève La Releve",
+   "nom": "Clinique La Relève (GMF Petit-Bois)",
+   "alias": "GMF du Petit-Bois Petit-Bois Petit Bois CAMU Longueuil Clinique La Relève La Releve",
    "type": "GMF",
    "adresse": "1471, boulevard Lionel-Boulet, Bureau 21, Varennes QC J3X 1P7",
    "ville": "Varennes",
@@ -50,8 +50,8 @@
   },
   {
    "id": 3,
-   "nom": "Clinique CAMU Longueuil",
-   "alias": "",
+   "nom": "CAMU Longueuil (GMF Petit-Bois)",
+   "alias": "Clinique CAMU Longueuil CAMU Petit-Bois",
    "type": "GMF satellite",
    "adresse": "1144, rue Saint-Laurent Ouest, Bureau 100, Longueuil QC J4K 1E2",
    "ville": "Longueuil",
@@ -644,8 +644,8 @@
   },
   {
    "id": 18,
-   "nom": "GMF des Patriotes – St-Denis sur Richelieu",
-   "alias": "Horizon Clinique GMF des Patriotes Saint-Denis St-Denis-sur-Richelieu",
+   "nom": "GMF des Patriotes - Horizon",
+   "alias": "Horizon Clinique GMF des Patriotes Saint-Denis St-Denis-sur-Richelieu Patriotes",
    "type": "GMF",
    "rls": "Richelieu-Yamaska",
    "adresse": "620, chemin des Patriotes, bureau 202, Saint-Denis-sur-Richelieu QC J0H 1K0",
@@ -688,8 +688,8 @@
   },
   {
    "id": 19,
-   "nom": "GMF Saint-Mathieu-de-Beloeil",
-   "alias": "",
+   "nom": "Clinique médicale Les 2 Chênes",
+   "alias": "GMF Saint-Mathieu-de-Beloeil Saint-Mathieu St-Mathieu Beloeil Les 2 Chênes Les 2 Chenes Deux Chênes",
    "type": "GMF",
    "rls": "Richelieu-Yamaska",
    "adresse": "201-4605, chemin du Crépuscule, Saint-Mathieu-de-Beloeil QC J3G 0R2",
