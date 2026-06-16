@@ -1,5 +1,5 @@
 // Service worker — Cliniques RLS Pierre-Boucher
-const CACHE = 'gmf-pb-v65';
+const CACHE = 'gmf-pb-v66';
 const CORE = [
   './',
   './index.html',

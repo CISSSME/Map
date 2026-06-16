@@ -39,9 +39,9 @@ html, body { height: 100%; overflow: hidden; font-family: 'Lato', sans-serif; }
 
 /* HEADER */
 header {
-  position: fixed; top: 0; left: 0; right: 0; height: 62px;
+  position: fixed; top: 0; left: 0; right: 0; height: 76px;
   background: var(--navy); border-bottom: 3px solid var(--orange);
-  display: flex; align-items: center; padding: 0 0 0 22px; gap: 14px; z-index: 1000;
+  display: flex; align-items: center; padding: 0 0 0 26px; gap: 16px; z-index: 1000;
 }
 .brand { display:flex; align-items:center; gap:14px; cursor:pointer; }
 .brand:hover { opacity:.85; }
@@ -49,19 +49,19 @@ header {
 @keyframes brandTap { 0% { transform:scale(1); } 35% { transform:scale(.92); } 100% { transform:scale(1); } }
 .brand.tapped .logo-img { animation: brandTap .4s ease; }
 @media (prefers-reduced-motion: reduce) { .brand.tapped .logo-img { animation: none; } }
-.logo-img { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+.logo-img { width: 48px; height: 48px; border-radius: 9px; object-fit: cover; flex-shrink: 0; }
 .logo-text { color: #fff; }
-.logo-text strong { font-family: 'Raleway', sans-serif; font-size: 14px; font-weight: 700; display: block; }
-.logo-text span { font-size: 11px; font-weight: 300; opacity: .6; letter-spacing: .04em; text-transform: uppercase; }
-.header-right { margin-left: auto; display: flex; gap: 8px; align-items: center; padding-right: 10px; }
+.logo-text strong { font-family: 'Raleway', sans-serif; font-size: 17px; font-weight: 700; display: block; }
+.logo-text span { font-size: 13px; font-weight: 300; opacity: .6; letter-spacing: .04em; text-transform: uppercase; }
+.header-right { margin-left: auto; display: flex; gap: 10px; align-items: center; padding-right: 12px; }
 .btn-info { display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  width: 35px; height: 35px; border-radius: 50%; flex-shrink: 0;
   border: 1.5px solid rgba(255,255,255,.45); color: #fff; text-decoration: none;
-  font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 16px;
+  font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 700; font-size: 18px;
   line-height: 1; transition: background .15s, border-color .15s; }
 .btn-info:hover { background: rgba(255,255,255,.14); border-color: #fff; }
 .btn-install { background: var(--orange); color: #fff; font-family: 'Raleway', sans-serif;
-  font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 6px; border: none;
+  font-size: 13.5px; font-weight: 700; padding: 9px 16px; border-radius: 7px; border: none;
   cursor: pointer; letter-spacing: .03em; display: none; white-space: nowrap; }
 .btn-install:hover { filter: brightness(1.08); }
 .btn-install.show { display: inline-block; }
@@ -73,9 +73,9 @@ header {
 .ios-tip b { color: #ffd76b; }
 
 /* LAYOUT */
-.layout { display: flex; height: 100vh; height: 100dvh; padding-top: 62px; }
+.layout { display: flex; height: 100vh; height: 100dvh; padding-top: 76px; }
 
-.annonce-banner { display: none; position: fixed; top: 72px; left: 50%; transform: translateX(-50%);
+.annonce-banner { display: none; position: fixed; top: 86px; left: 50%; transform: translateX(-50%);
   z-index: 920; width: min(330px, calc(100% - 104px));
   background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
   box-shadow: 0 10px 30px rgba(15,34,64,.22); }
@@ -181,7 +181,7 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
   transform: rotate(45deg); color: #fff; font-family: 'Raleway', sans-serif; font-weight: 700; font-size: 11px; }
 
 /* DETAIL PANEL (READ-ONLY VIEWER) */
-.detail { position: fixed; top: 62px; right: 0; bottom: 0; width: 480px;
+.detail { position: fixed; top: 76px; right: 0; bottom: 0; width: 480px;
   background: var(--white); border-left: 1px solid var(--border);
   box-shadow: -6px 0 30px rgba(0,0,0,.1); z-index: 960;
   display: flex; flex-direction: column; overflow: hidden;
@@ -258,16 +258,16 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
   position: fixed; left: 0; top: 50%; transform: translateY(-50%);
   z-index: 940; background: var(--navy); color: #fff;
   border: none; border-left: 3px solid var(--orange);
-  border-radius: 0 12px 12px 0; padding: 18px 8px; cursor: pointer;
+  border-radius: 0 14px 14px 0; padding: 24px 11px; cursor: pointer;
   font-family: 'Raleway', sans-serif;
-  font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+  font-weight: 700; font-size: 15px; letter-spacing: .12em; text-transform: uppercase;
   box-shadow: 2px 0 12px rgba(0,0,0,.25);
 }
 .sidebar-toggle:hover { background: var(--navy2); }
 .sidebar-toggle.hidden { display: none !important; }
 .sb-dots { display: flex; gap: 2px; line-height: 0; }
 .sb-label { writing-mode: vertical-rl; }
-.sb-dots i { width: 4px; height: 4px; border-radius: 50%; background: currentColor; display: block;
+.sb-dots i { width: 5px; height: 5px; border-radius: 50%; background: currentColor; display: block;
   animation: sbDotHop 5s ease-in-out infinite; will-change: transform; }
 .sidebar-toggle:not(.hidden) .sb-dots i { animation-play-state: running; }
 .sb-dots i:nth-child(2) { animation-delay: .14s; }
@@ -278,7 +278,7 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
   7%, 100% { transform: translateY(0); }
 }
 .sidebar-overlay {
-  display: none; position: fixed; inset: 62px 0 0 0;
+  display: none; position: fixed; inset: 76px 0 0 0;
   background: rgba(15,34,64,.4); z-index: 945;
   opacity: 0; pointer-events: none; transition: opacity .3s;
 }
@@ -287,7 +287,7 @@ body.fiche-open .leaflet-control-zoom, body.fiche-open .locate-ctrl { display: n
 @media (max-width: 860px) {
   .detail { width: 100%; }
   .sidebar {
-    display: flex; position: fixed; top: 62px; left: 0; bottom: 0;
+    display: flex; position: fixed; top: 76px; left: 0; bottom: 0;
     width: 86%; max-width: 360px; z-index: 950;
     transform: translateX(-100%);
     transition: transform .3s cubic-bezier(.4,0,.2,1);
