@@ -1,8 +1,9 @@
 {
- "miseAJour": "2026-06-12",
+ "miseAJour": "2026-06-15",
  "annonce": {
-  "texte": "Cocktail & bouchées — 15 juin à 18 h, au Restaurant l'Élan (Parcours du Cerf, Longueuil).",
-  "lienCarte": "https://www.google.com/maps/search/?api=1&query=Restaurant%20l%27%C3%89lan%2C%202500%20boulevard%20Fernand-Lafontaine%2C%20Longueuil%20QC%20J4N%201M5"
+  "texte": "",
+  "lien": "",
+  "lienCarte": ""
  },
  "cliniques": [
   {
@@ -229,17 +230,18 @@
    },
    "personnel": {
     "medecins": "43",
+    "specialistes": "23",
     "infirmieres": "8",
-    "ipspl": "",
-    "physiotherapeutes": "",
-    "pharmaciennes": "",
-    "travailleuresSociales": "4"
+    "infauxiliaires": "8",
+    "psychologues": "1",
+    "travailleuresSociales": "4",
+    "nutritionnistes": "2"
    },
    "notes": "",
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "Bureau dédié et partagé",
+   "bureau": "Bureau dédié ou partagé",
    "frais": "",
    "pratiques": [],
    "niveau": "Mission GMF : Niveau 12 · Mission accès réseau : Niveau 4",
@@ -269,11 +271,14 @@
    },
    "personnel": {
     "medecins": "16",
-    "infirmieres": "4",
+    "residents": "12",
     "ipspl": "4",
+    "infirmieres": "4",
+    "infauxiliaires": "3",
+    "aac": "1",
     "physiotherapeutes": "1",
-    "pharmaciennes": "0,2",
-    "travailleuresSociales": "1"
+    "travailleuresSociales": "1",
+    "pharmaciennes": "0,2"
    },
    "notes": "",
    "photo": null,
@@ -359,7 +364,7 @@
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "",
+   "bureau": "Bureau dédié ou partagé",
    "frais": "",
    "pratiques": [],
    "niveau": "Niveau 2",
@@ -429,17 +434,18 @@
    },
    "personnel": {
     "medecins": "15",
+    "specialistes": "9",
     "infirmieres": "4",
-    "ipspl": "",
-    "physiotherapeutes": "1",
+    "infauxiliaires": "2",
+    "travailleuresSociales": "2",
     "pharmaciennes": "2",
-    "travailleuresSociales": "2"
+    "infsantementale": "1"
    },
    "notes": "",
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "Bureau dédié et partagé",
+   "bureau": "Bureau dédié ou partagé",
    "frais": "",
    "pratiques": [],
    "niveau": "Niveau 6",
@@ -616,7 +622,7 @@
    "lat": 45.7839061,
    "lng": -73.1597819,
    "telephone": "450 787-3233",
-   "site": "https://www.coopsantestdenis.com",
+   "site": "https://www.horizonclinique.ca",
    "personneRessource": "julie.lafrenaye.med@ssss.gouv.qc.ca",
    "dme": "Medesync (Telus)",
    "horaire": {
@@ -630,10 +636,9 @@
    },
    "personnel": {
     "medecins": "3",
-    "infirmieres": "1",
     "ipspl": "6",
-    "physiotherapeutes": "",
-    "pharmaciennes": "",
+    "infirmieres": "1",
+    "nutritionnistes": "1",
     "travailleuresSociales": "1"
    },
    "notes": "",
@@ -679,7 +684,7 @@
    "notes": "",
    "photo": null,
    "posApprox": false,
-   "bureau": "",
+   "bureau": "Bureau partagé",
    "frais": "",
    "pratiques": [],
    "niveau": "Niveau 14",
@@ -751,10 +756,10 @@
    "personnel": {
     "medecins": "6",
     "infirmieres": "2",
-    "ipspl": "",
-    "physiotherapeutes": "",
+    "travailleuresSociales": "1",
+    "nutritionnistes": "1",
     "pharmaciennes": "1",
-    "travailleuresSociales": "1"
+    "specialistes": "1 (médecine interne)"
    },
    "notes": "",
    "photo": null,
@@ -831,10 +836,10 @@
    "personnel": {
     "medecins": "9",
     "infirmieres": "2",
-    "ipspl": "",
-    "physiotherapeutes": "",
+    "infauxiliaires": "3",
+    "travailleuresSociales": "2",
     "pharmaciennes": "1",
-    "travailleuresSociales": "2"
+    "nutritionnistes": "1"
    },
    "notes": "",
    "photo": null,

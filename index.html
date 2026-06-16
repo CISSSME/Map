@@ -794,11 +794,18 @@ function renderSidebar() {
 // ═══════════════════════════════════════════
 const staffDefs = [
   {icon:'🩺', key:'medecins',           lbl:'Médecins'},
-  {icon:'👩‍⚕️', key:'infirmieres',       lbl:'Infirmières'},
-  {icon:'🏥',  key:'ipspl',             lbl:'IPSPL'},
-  {icon:'🦵',  key:'physiotherapeutes', lbl:'Physiothérapeutes'},
-  {icon:'💊',  key:'pharmaciennes',     lbl:'Pharmaciennes'},
-  {icon:'🤝',  key:'travailleuresSociales', lbl:'Travailleuses sociales'},
+  {icon:'🎓', key:'residents',          lbl:'Résidents'},
+  {icon:'🔬', key:'specialistes',       lbl:'Médecins spécialistes'},
+  {icon:'🏥', key:'ipspl',              lbl:'IPS-PL'},
+  {icon:'👩‍⚕️', key:'infirmieres',       lbl:'Infirmières cliniciennes'},
+  {icon:'💉', key:'infauxiliaires',     lbl:'Infirmières auxiliaires'},
+  {icon:'🧠', key:'infsantementale',    lbl:'Infirmière en santé mentale'},
+  {icon:'🦵', key:'physiotherapeutes',  lbl:'Physiothérapeutes'},
+  {icon:'💊', key:'pharmaciennes',      lbl:'Pharmaciennes'},
+  {icon:'🥗', key:'nutritionnistes',    lbl:'Nutritionnistes'},
+  {icon:'🫂', key:'psychologues',       lbl:'Psychologues'},
+  {icon:'🤝', key:'travailleuresSociales', lbl:'Travailleuses sociales'},
+  {icon:'📋', key:'aac',                lbl:'Agentes administratives (AAC)'},
 ];
 
 const PRATIQUES = [
@@ -933,7 +940,10 @@ function buildComparatif(favs) {
   rows += sect("Horaire d'ouverture");
   JOURS.forEach(j => { rows += row(j, g => cmpHor((g.horaire || {})[j] || '')); });
   rows += sect('Personnel clinique');
-  staffDefs.forEach(sd => { rows += row(sd.lbl, g => cmpPers((g.personnel || {})[sd.key] || '')); });
+  staffDefs.forEach(sd => {
+    const present = gs.some(g => { const v=(g.personnel||{})[sd.key]; return v && String(v).trim()!==''; });
+    if (present) rows += row(sd.lbl, g => cmpPers((g.personnel || {})[sd.key] || ''));
+  });
   rows += sect('Notes personnelles');
   rows += row('', g => cmpNote(g.notes));
   const html = `
@@ -1117,13 +1127,14 @@ function openDetail(id) {
   let staffCells = '';
   staffDefs.forEach(s => {
     const v = (g.personnel || {})[s.key];
-    const has = v && String(v).trim() !== '';
+    if (!v || String(v).trim() === '') return;  // catégorie absente -> non affichée
     staffCells += `<div class="staff-cell">
       <span class="staff-icon">${s.icon}</span>
-      <span class="staff-count${has?'':' empty'}">${has ? esc(v) : '—'}</span>
+      <span class="staff-count">${esc(v)}</span>
       <span class="staff-label">${s.lbl}</span>
     </div>`;
   });
+  if (!staffCells) staffCells = '<div class="staff-cell" style="grid-column:1 / -1;"><span class="staff-label" style="color:#b8b1a0;">À venir</span></div>';
 
   const poRaw = (g.porteOuverte || '').trim();
   const poDisp = !poRaw ? 'À venir'
