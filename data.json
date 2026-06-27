@@ -29,12 +29,14 @@
     "Dimanche": "Fermé"
    },
    "personnel": {
-    "medecins": "8",
-    "infirmieres": "2",
-    "ipspl": "2",
-    "physiotherapeutes": "1",
+    "medecins": "9",
+    "infirmieres": "5",
+    "infauxiliaires": "1",
+    "ipspl": "3",
+    "physiotherapeutes": "3",
     "pharmaciennes": "2",
-    "travailleuresSociales": "2"
+    "intervenantspsychosociaux": "5",
+    "nutritionnistes": "1 (à venir)"
    },
    "notes": "",
    "photo": null,
@@ -71,12 +73,8 @@
     "Dimanche": "8h00 - 16h00"
    },
    "personnel": {
-    "medecins": "",
-    "infirmieres": "",
-    "ipspl": "",
-    "physiotherapeutes": "",
-    "pharmaciennes": "",
-    "travailleuresSociales": ""
+    "medecins": "15",
+    "infirmieres": "3"
    },
    "notes": "",
    "photo": null,
@@ -710,12 +708,12 @@
     "Dimanche": "8h30 – 12h30"
    },
    "personnel": {
-    "medecins": "",
-    "infirmieres": "",
-    "ipspl": "",
-    "physiotherapeutes": "",
-    "pharmaciennes": "",
-    "travailleuresSociales": ""
+    "medecins": "11",
+    "infirmieres": "7",
+    "ipspl": "7",
+    "physiotherapeutes": "1",
+    "pharmaciennes": "2",
+    "travailleuresSociales": "4"
    },
    "notes": "",
    "photo": null,
