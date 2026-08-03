@@ -1,5 +1,5 @@
 {
- "miseAJour": "2026-06-15",
+ "miseAJour": "2026-08-03",
  "annonce": {
   "texte": "",
   "lien": "",
@@ -42,12 +42,12 @@
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "",
+   "bureau": "Bureaux partagés",
    "frais": "Frais fixe",
    "pratiques": [
     "pec"
    ],
-   "niveau": "Niveau 17",
+   "niveau": "Niveau 17 (pour l'ensemble du GMF — 2 sites)",
    "porteOuverte": "16 juillet 2026"
   },
   {
@@ -73,19 +73,19 @@
     "Dimanche": "8h00 - 16h00"
    },
    "personnel": {
-    "medecins": "15",
+    "medecins": "15 (6 à temps plein, 9 à temps partiel)",
     "infirmieres": "3"
    },
    "notes": "",
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "",
+   "bureau": "Bureau dédié et partagé",
    "frais": "",
    "pratiques": [
     "pec"
    ],
-   "niveau": "Niveau 17",
+   "niveau": "Niveau 17 (pour l'ensemble du GMF — 2 sites)",
    "porteOuverte": ""
   },
   {
@@ -250,7 +250,7 @@
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "Bureau dédié ou partagé",
+   "bureau": "Bureau dédié et partagé",
    "frais": "",
    "pratiques": [
     "pec"
@@ -289,7 +289,7 @@
     "aac": "1",
     "physiotherapeutes": "1",
     "travailleuresSociales": "1",
-    "pharmaciennes": "1"
+    "pharmaciennes": "1 (0,2 ETP)"
    },
    "notes": "",
    "photo": null,
@@ -339,7 +339,7 @@
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "",
+   "bureau": "Bureau dédié et partagé",
    "frais": "Société de dépense",
    "pratiques": [
     "pec"
@@ -361,9 +361,9 @@
    "personneRessource": "ignace.adah.med@ssss.gouv.qc.ca",
    "dme": "Medesync (Telus)",
    "horaire": {
-    "Lundi": "8h00 – 20h30",
-    "Mardi": "8h00 – 16h00",
-    "Mercredi": "8h00 – 20h30",
+    "Lundi": "8h00 – 19h00",
+    "Mardi": "8h00 – 19h00",
+    "Mercredi": "8h00 – 18h00",
     "Jeudi": "8h00 – 16h00",
     "Vendredi": "8h00 – 16h00",
     "Samedi": "8h00 – 16h00",
@@ -373,16 +373,19 @@
     "medecins": "8",
     "ipspl": "1",
     "physiotherapeutes": "1",
-    "pharmaciennes": "1 (1 jour/sem)"
+    "pharmaciennes": "1 (1 jour/sem)",
+    "infirmieres": "3",
+    "travailleuresSociales": "1"
    },
    "notes": "",
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "Bureau dédié et partagé",
-   "frais": "Aucun frais",
+   "bureau": "Bureau individuel si prise en charge à temps plein ; bureau partagé si pratique mixte ou à temps partiel",
+   "frais": "Aucun frais de bureau",
    "pratiques": [
-    "pec"
+    "pec",
+    "sad"
    ],
    "niveau": "Niveau 2",
    "porteOuverte": ""
@@ -454,17 +457,18 @@
    "personnel": {
     "medecins": "15",
     "specialistes": "9",
-    "infirmieres": "4",
+    "infirmieres": "4 (1 de plus à venir)",
     "infauxiliaires": "2",
     "travailleuresSociales": "2",
     "pharmaciennes": "2",
-    "infsantementale": "1"
+    "infsantementale": "1",
+    "physiotherapeutes": "à venir"
    },
    "notes": "",
    "photo": null,
    "rls": "Pierre-Boucher",
    "posApprox": false,
-   "bureau": "Bureau dédié ou partagé",
+   "bureau": "Bureau dédié et partagé",
    "frais": "",
    "pratiques": [
     "pec"
@@ -595,7 +599,7 @@
    "pratiques": [
     "pec"
    ],
-   "niveau": "Niveau 5",
+   "niveau": "Niveau 5 (mission universitaire)",
    "porteOuverte": ""
   },
   {
@@ -681,7 +685,7 @@
     "msk",
     "chir"
    ],
-   "niveau": "Niveau 4",
+   "niveau": "Niveau 4 (pour l'ensemble du GMF — 2 sites)",
    "porteOuverte": ""
   },
   {
@@ -723,7 +727,7 @@
    "pratiques": [
     "pec"
    ],
-   "niveau": "Niveau 14",
+   "niveau": "Niveau 14 (pour l'ensemble du GMF — 2 sites)",
    "porteOuverte": ""
   },
   {
@@ -1017,7 +1021,7 @@
    "pratiques": [
     "pec"
    ],
-   "niveau": "",
+   "niveau": "Rattachée au GMF Saint-Mathieu-de-Beloeil",
    "porteOuverte": ""
   },
   {
